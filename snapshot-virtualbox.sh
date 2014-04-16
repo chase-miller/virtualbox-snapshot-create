@@ -1,0 +1,1 @@
+date | awk '{gsub(/[ \t]/,"-");print}'
