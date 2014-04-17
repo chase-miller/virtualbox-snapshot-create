@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Creates a snapshot of each VM in VirtualBox. The name is the timestamp.
+
 FORMATTED_DATE=$(date | awk '{gsub(/[ \t]/,"-");print}')
 
 VM_IDS=$(VBoxManage list vms | awk -F '"' '{print $3}')
@@ -10,4 +12,5 @@ do
 	NEXT=${VM_IDS_ARRAY[$(($i))]}
 	VBoxManage snapshot "$NEXT" take "$FORMATTED_DATE"
 	logger "From $0 - Created VirtualBox Snapshot for VM $NEXT"
+	echo "Created VirtualBox Snapshot for VM $NEXT"
 done
