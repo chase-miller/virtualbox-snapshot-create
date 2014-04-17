@@ -2,7 +2,7 @@
 
 # Creates a snapshot of each VM in VirtualBox. The name is the timestamp.
 
-FORMATTED_DATE=$(date | awk '{gsub(/[ \t]/,"-");print}')
+FORMATTED_DATE="$(date | awk '{gsub(/[ \t]/,"-");print}')-snapshot"
 
 VM_IDS=$(VBoxManage list vms | awk -F '"' '{print $3}')
 VM_IDS_ARRAY=(${VM_IDS//" "/ })
