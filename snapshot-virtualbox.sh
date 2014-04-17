@@ -11,6 +11,6 @@ for ((i = 0 ; i < ${#VM_IDS_ARRAY[@]}; i++));
 do
 	NEXT=${VM_IDS_ARRAY[$(($i))]}
 	VBoxManage snapshot "$NEXT" take "$FORMATTED_DATE" --live
-	logger "From $0 - Created VirtualBox Snapshot for VM $NEXT"
-	echo "Created VirtualBox Snapshot for VM $NEXT"
+	logger "From $0 - Created VirtualBox Snapshot $FORMATTED_DATE for VM $NEXT"
+	echo "Created VirtualBox Snapshot $FORMATTED_DATE for VM $NEXT"
 done
