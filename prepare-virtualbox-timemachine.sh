@@ -10,28 +10,17 @@ usage ()
 
 [ -n "$1" ] || usage
 
+echo "Preparing virtualbox for time machine backups"
+logger "Preparing virtualbox for time machine backups"
+
 snapshot-virtualbox.sh
+printf "\n\n"
 
 delete-old-snapshots.sh $1
+printf "\n\n"
 
-VM_IDS=$(VBoxManage list vms | awk -F '"' '{print $2}')
+compact-virtualbox-vdis.sh
+printf "\n\n"
 
-OIFS="${IFS}"
-NIFS=$'\n'
-
-IFS="${NIFS}"
-
-for vm in ${VM_IDS}
-do
-	echo "Compacting vdi for $vm"
-
-	VBoxManage modifyhd "$vm" –-compact
-
-	logger "Finished compacting vdi of $vm"
-
-	echo "Finished compacting vdi of $vm"	
-
-	printf "\n\n"
-done
-
-IFS="${OIFS}"
+echo "Done preparing virtualbox for time machine backups"
+logger "Done preparing virtualbox for time machine backups"
