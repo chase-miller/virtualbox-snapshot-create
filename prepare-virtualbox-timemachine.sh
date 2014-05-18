@@ -19,8 +19,8 @@ printf "\n\n"
 delete-old-snapshots.sh $1
 printf "\n\n"
 
-compact-virtualbox-vdis.sh
-printf "\n\n"
+#compact-virtualbox-vdis.sh
+#printf "\n\n"
 
 echo "Done preparing virtualbox for time machine backups"
 logger "Done preparing virtualbox for time machine backups"
